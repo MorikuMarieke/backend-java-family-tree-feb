@@ -15,6 +15,7 @@ public class Person {
     private int age;
     private Person parent1;
     private Person parent2;
+    private Person partner;
     private List<Person> siblings = new ArrayList<>();
     private List<Person> children = new ArrayList<>();
     private List<Pet> pets = new ArrayList<>();
@@ -91,6 +92,35 @@ public class Person {
             grandChildren.addAll(child.getChildren());
         }
         return grandChildren;
+    }
+
+    public List<Pet> getPetsOfGrandchildren() {
+        List<Pet> petsOfGrandchildren = new ArrayList<>();
+        List<Person> grandChildren = this.getGrandChildren();
+        for (Person grandchild : grandChildren) {
+            petsOfGrandchildren.addAll(grandchild.getPets());
+        }
+        return petsOfGrandchildren;
+    }
+
+    public List<Person> getNieces() {
+        List<Person> siblings = this.getSiblings();
+        List<Person> nieces = new ArrayList<>();
+        for (Person sibling : siblings) {
+            for (Person child : sibling.getChildren()) {
+                if ("female".equalsIgnoreCase(child.getSex())) {
+                    nieces.add(child);
+                }
+            }
+        }
+        return nieces;
+    }
+
+    public void addPartner(Person partner) {
+        this.partner = partner;
+        if (partner.getPartner() != partner) {
+            partner.setPartner(this);
+        }
     }
 
     @Override

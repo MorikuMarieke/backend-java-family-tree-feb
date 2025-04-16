@@ -121,4 +121,69 @@ class PersonTest {
         assertTrue(person.getSiblings().contains(person3));
         assertFalse(person2.getSiblings().contains(person3));
     }
+
+
+    @Test
+    void getPetsOfGrandchildren_shouldReturnAListOfAllPetsOfGrandchildren() {
+//        Arrange
+        Person person = new Person("Test", "Testson", "female", 65);
+        Person child = new Person("child", "Testson", "male", 45);
+        Person grandchild = new Person("grandchild", "Testson", "female", 12);
+        Person grandchild2 = new Person("grandchild2", "Testson", "male", 13);
+        Pet pet1 = new Pet("Pickle", 2, "Dog with a sour attitude");
+        Pet pet2 = new Pet("Limp Bisquit", 14, "Paraplegic cat");
+        Pet pet3 = new Pet("Wiener", 5, "Obviously a dachshund");
+        Pet pet4 = new Pet("Gandalf", 55000, "Wizard disguised as bearded dragon");
+        person.addChild(child);
+        child.addChild(grandchild);
+        child.addChild(grandchild2);
+        grandchild.addPet(pet1);
+        grandchild.addPet(pet2);
+        grandchild2.addPet(pet3);
+        grandchild2.addPet(pet4);
+//        Act
+        List<Pet> result = person.getPetsOfGrandchildren();
+//        Assert
+        assertEquals(4, result.size());
+        assertTrue(result.contains(pet1));
+        assertTrue(result.contains(pet2));
+        assertTrue(result.contains(pet3));
+        assertTrue(result.contains(pet4));
+    }
+
+    @Test
+    void getNieces_shouldReturnListOfDaughtersOfSibling() {
+//        Arrange
+        Person person = new Person("Test", "Testson", "female", 65);
+        Person child1 = new Person("child1", "Testson", "male", 45);
+        Person child2 = new Person("child2", "Testson", "female", 45);
+        Person grandchild = new Person("grandchild", "Testson", "female", 12);
+        Person grandchild2 = new Person("grandchild2", "Testson", "male", 13);
+        Person grandchild3 = new Person("grandchild", "Testson", "female", 11);
+
+        person.addChild(child1);
+        person.addChild(child2);
+        child1.addChild(grandchild);
+        child1.addChild(grandchild2);
+        child1.addChild(grandchild3);
+//        Act
+        List<Person> niecesOfChild2 = child2.getNieces();
+//        Assert
+        assertEquals(2, niecesOfChild2.size());
+        assertTrue(niecesOfChild2.contains(grandchild));
+        assertTrue(niecesOfChild2.contains(grandchild3));
+        assertFalse(niecesOfChild2.contains(grandchild2));
+    }
+
+    @Test
+    void addPartner_shouldAddPartnerToBothPersons() {
+//        Arrange
+        Person person1 = new Person("Person1", "Testson", "female", 44);
+        Person person2 = new Person("Person1", "Testson", "male", 43);
+//        Act
+        person1.addPartner(person2);
+//        Assert
+        assertEquals(person1, person2.getPartner());
+        assertEquals(person2, person1.getPartner());
+    }
 }
