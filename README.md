@@ -15,31 +15,31 @@ In de applicatie die we gaan maken, is het mogelijk om nieuwe personen en huisdi
 ## Randvoorwaarden
 De opdracht moet voldoen aan de volgende voorwaarden:
 
-- minimaal 1 `Person`
-- minimaal 1 `Pet`
+- minimaal 1 `main.Person`
+- minimaal 1 `main.Pet`
 - alle methodes (behalve de getters en setters) worden getest door een unittest
 
-De `Person` heeft volgende attributen:
+De `main.Person` heeft volgende attributen:
 
 - name
 - middleName
 - lastName
 - sex
 - age
-- mother (Person)
-- father (Person)
+- mother (main.Person)
+- father (main.Person)
 - siblings (lijst)
 - children (lijst)
 - pets (lijst)
 
-De `Pet` heeft minimaal de volgende attributen:
+De `main.Pet` heeft minimaal de volgende attributen:
 
 - name
 - age
 - species
-- owner (Person)
+- owner (main.Person)
 
-De `Person` bevat naast de attributen het volgende:
+De `main.Person` bevat naast de attributen het volgende:
 
 - constructor met name, lastname, age en sex
 - constructor met name, middleName, lastname, age en sex
@@ -50,7 +50,7 @@ De `Person` bevat naast de attributen het volgende:
 - addSibling methode
 - getGrandChildren methode
 
-De `Pet` bevat naast de attributen minimaal:
+De `main.Pet` bevat naast de attributen minimaal:
 
 - een constructor met alle attributen op 'owner' na
 - getters & setters
@@ -77,9 +77,9 @@ Let op: het is uitdagender om jouw eigen stappenplan te maken. Als je niet zo go
 
 6. Voeg Maven toe aan het project.
 
-7. (optioneel) Schrijf unittesten voor alle getters en setters van zowel Pet als Person. 
+7. (optioneel) Schrijf unittesten voor alle getters en setters van zowel main.Pet als main.Person. 
 
-8. Schrijf unittesten voor de extra methodes van Person (addPArents, addChild, addPet, addSibling, getGrandChildren)
+8. Schrijf unittesten voor de extra methodes van main.Person (addPArents, addChild, addPet, addSibling, getGrandChildren)
 
 
 
@@ -88,5 +88,5 @@ Als je de bonusopdrachten maakt, zorg dan dat deze ook getest worden!
 
 1. Schrijf een methode om alle dieren van de kleinkinderen terug te geven van een persoon. 
 2. Schrijf een methode om alle nichtjes terug te geven van een persoon.
-3. Voeg een partner toe aan de `Person` en implementeer deze partner door de gehele applicatie inclusief getter & setter en benodigde methodes.
+3. Voeg een partner toe aan de `main.Person` en implementeer deze partner door de gehele applicatie inclusief getter & setter en benodigde methodes.
 4. Kun je nog meer toevoegingen bedenken om de 'stamboom applicatie' compleet te maken?
