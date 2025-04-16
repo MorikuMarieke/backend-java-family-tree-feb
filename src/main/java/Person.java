@@ -3,6 +3,7 @@ import lombok.Setter;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 @Setter
 @Getter
@@ -33,29 +34,36 @@ public class Person {
         this.age = age;
     }
 
-//    methods
+    //    methods
     public void addParent(Person parent) {
         if (this.parent1 == null) {
             setParent1(parent);
             parent1.addChild(this);
             System.out.println("Added " + parent1.name + " " + parent1.lastName + " as first parent");
-        }
-        if (this.parent2 == null) {
+        } else if (this.parent2 == null) {
             setParent2(parent);
             parent2.addChild(this);
             System.out.println("Added " + parent2.name + " " + parent2.lastName + " as second parent");
-        }
-        if (!(this.parent1 == null) && !(this.parent2 == null)) {
+        } else {
             System.out.println("This person already has 2 parents registered.");
+            return;
         }
+
     }
 
     public void addChild(Person child) {
         this.children.add(child);
-        if (child.parent1 == null) {
+        if (child.getParent1() == null) {
             child.setParent1(this);
-        } else if (child.parent2 == null && child.parent1 != this){
+        } else if (child.getParent2() == null && !Objects.equals(child.getParent1(), this)) {
             child.setParent2(this);
+        }
+
+        for (Person possibleSibing : this.children) {
+            if (!possibleSibing.equals(child)) {
+                child.addSibling(possibleSibing);
+                possibleSibing.addSibling(child);
+            }
         }
     }
 
